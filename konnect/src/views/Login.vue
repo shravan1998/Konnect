@@ -1,12 +1,13 @@
 
 <template>
+<div :style="myStyle" id="wrapper">
 
 <v-container>
 
 <div class="card">
   <div class="card-body">
 <form>
-  <h3>Login</h3>
+  <h3>Welcome Back To Konnect!</h3>
   <div class="form-group">
     <label for="exampleInputEmail1">Email address</label>
     <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" >
@@ -19,10 +20,38 @@
 
   <button type="submit" class="btn btn-primary">Submit</button>
   &nbsp;
-  <router-link class="btn btn-success" tag="button" to="/register">Register</router-link>
+  <router-link class="btn btn-success" tag="button" to="/register">Register If You Don't Have The Account Yet</router-link>
    
 </form>
   </div>
 </div>
 </v-container>
+</div>
 </template>
+
+<script scoped>
+export default {
+     data(){
+       return{
+         myStyle:{
+            backgroundColor:"#ffd11a", 
+            padding: "300px",
+            
+            }
+        
+           }
+         }
+}
+</script>
+<style scoped>
+.card-body{
+    background-color: #000033;
+    color: white;
+}
+label,small{
+    color: white;
+}
+#wrapper{
+    margin-top: -30px;
+}
+</style>

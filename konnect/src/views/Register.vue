@@ -1,11 +1,11 @@
-<template>
-
-<v-container>
+<template >
+<div :style="myStyle" id="wrapper">
+<v-container >
 
 <div class="card">
   <div class="card-body">
 <form>
-  <h3>Register</h3>
+  <h3>Register To Konnect!</h3>
   <div class="row">
     <div class="col">
       <input type="text" class="form-control" placeholder="First name">
@@ -29,10 +29,38 @@
   </div>
   <button type="submit" class="btn btn-primary">Submit</button>
   &nbsp;
-  <router-link class="btn btn-success" tag="button" to="/register">Register</router-link>
+  <router-link class="btn btn-success" tag="button" to="/login">Login If Already Have An Account</router-link>
    
 </form>
   </div>
 </div>
 </v-container>
+</div>
 </template>
+
+<script scoped>
+export default {
+     data(){
+       return{
+         myStyle:{
+            backgroundColor:"#ffd11a", 
+            padding: "300px",
+            
+            }
+        
+           }
+         }
+}
+</script>
+<style scoped>
+.card-body{
+    background-color: #000033;
+    color: white;
+}
+label,small{
+    color: white;
+}
+#wrapper{
+    margin-top: -30px;
+}
+</style>

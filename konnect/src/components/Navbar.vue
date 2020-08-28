@@ -90,8 +90,8 @@ export default {
         drawer: null,
         items: [
           { title: 'Home' ,url:"/home"},
-          { title: 'Task',url:"/task-entry"},
-          {title:'Scoreboard',url:"/scoreboard"},
+          { title: 'Notifications',url:"/task-entry"},
+          {title:'Profile',url:"/profile"},
           {title:'Logout',url:"/login"}
         ],
        // name:this.$localStorage.get("name")
