@@ -13,7 +13,8 @@
         >
            <form>
           <div class="form-group">
-             <label for="exampleFormControlTextarea1">Post something here</label>
+             <label for="exampleFormControlTextarea1">Anything you wanna share?
+             </label>
     <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
           </div>
           <button type="submit" class="btn btn-primary">Submit</button>

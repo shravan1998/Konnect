@@ -10,11 +10,12 @@
         <Navbar />
         <v-container
         style="position:absolute;top:10%;"
+        fluid
         >
          <v-card
     class="mx-auto"
     max-width="800"
-    
+    fluid
     tile
   >
     <v-img
@@ -60,7 +61,7 @@
   </v-card>
            <form>
           <div class="form-group">
-             <label for="exampleFormControlTextarea1">Post something here</label>
+             <label for="exampleFormControlTextarea1">So What's Up?</label>
     <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
           </div>
           <button type="submit" class="btn btn-primary">Submit</button>
