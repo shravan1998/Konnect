@@ -32,7 +32,13 @@
         </v-toolbar-title>
   
         <v-spacer></v-spacer>
+        <form class="form-inline">
+          <div class="form-group mx-sm-3 mb-2">
   
+    <input type="text" class="form-control" id="inputPassword2" placeholder="Search">
+  </div>
+  <button type="submit" class="btn clr mb-2">Search</button>
+        </form>
   
       </v-toolbar>
     </v-card>
@@ -100,3 +106,9 @@ export default {
   
 }
 </script>
+
+<style scoped>
+.clr{
+    background-color: #ffd11a;
+}
+</style>
