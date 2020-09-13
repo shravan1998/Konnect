@@ -4,7 +4,8 @@ import Login from './views/Login.vue'
 import Register from './views/Register.vue'
 import Home from './views/Home.vue'
 import Profile from './views/Profile.vue'
-
+import Notification from './views/Notifications.vue'
+import Messages from './views/Message.vue'
 
 Vue.use(Router)
 
@@ -38,6 +39,16 @@ const router = new Router(
                 path:"/profile",
                 name:"profile",
                 component:Profile
+            },
+            {
+                path:"/notification",
+                name:"notification",
+                component:Notification
+            },
+            {
+                path:"/messages",
+                name:"messages",
+                component:Messages
             },
             {path:'*',redirect:'/'}
         ]

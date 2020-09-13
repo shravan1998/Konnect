@@ -96,9 +96,11 @@ export default {
         drawer: null,
         items: [
           { title: 'Home' ,url:"/home"},
-          { title: 'Notifications',url:"/task-entry"},
+          { title: 'Notifications',url:"/notification"},
+          {title:'Messages',url:"/messages"},
           {title:'Profile',url:"/profile"},
-          {title:'Logout',url:"/login"}
+          {title:'Logout',url:"/login"},
+
         ],
        // name:this.$localStorage.get("name")
       }
