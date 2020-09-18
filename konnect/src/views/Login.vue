@@ -30,6 +30,7 @@
 </template>
 
 <script scoped>
+import axios from 'axios';
 export default {
      data(){
        return{
@@ -40,7 +41,10 @@ export default {
             }
         
            }
-         }
+         },
+      mounted(){
+        axios.post('/login')
+      }
 }
 </script>
 <style scoped>
