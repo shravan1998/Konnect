@@ -44,7 +44,17 @@
                 Others
             </label>
             </div>
-
+            <v-btn class="mx-2" fab dark color="blue" @click="addEducation">
+            <v-icon dark>mdi-plus</v-icon>
+            
+            </v-btn>Education Details
+        <div v-for="(ed,index) in Education" :key="index">
+            
+            <input type="text" :v-model="ed.value">
+             <button @click="deleteFind(index)">
+            </button>
+        </div>
+           
         </form>
        
   </v-app>
@@ -63,9 +73,14 @@ export default {
     data(){
       return{
        // slackId:this.$localStorage.get('slackId'),
-        tasks:null
+        Education:[]
       }
-    },
+    },methods:{
+        addEducation(){
+            
+            this.Education.push({value:''});
+        }
+    }
 
     
 }
