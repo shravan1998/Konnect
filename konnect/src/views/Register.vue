@@ -16,18 +16,18 @@
   </div>
   <div class="form-group">
     <label for="exampleInputEmail1">Email address</label>
-    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" v-model="password">
+    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" v-model="email">
     <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
   </div>
   <div class="form-group">
     <label for="exampleInputPassword1">Password</label>
-    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" v-model="cpassword">
-  </div>
-    <div class="form-group">
-    <label for="exampleInputPassword1">Confirm Password</label>
     <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" v-model="password">
   </div>
-  <button type="submit" class="btn btn-primary">Submit</button>
+    <div class="form-group">
+    <label for="exampleInputPassword2">Confirm Password</label>
+    <input type="password" class="form-control" id="exampleInputPassword2" placeholder="Confirm Password" v-model="cpassword">
+  </div>
+  <button type="submit" class="btn btn-primary" @click.stop.prevent="submit">Submit</button>
   &nbsp;
   <router-link class="btn btn-success" tag="button" to="/login">Login If Already Have An Account</router-link>
    
@@ -39,8 +39,8 @@
 </template>
 
 <script scoped>
-//import axios from "axios";
-//import md5 from 'md5'
+import axios from "axios";
+import md5 from 'md5'
 export default {
     
      data(){
@@ -82,11 +82,11 @@ export default {
                 }).then(response=>{
                   console.log(response)
                 })
-                this.$localStorage.set('email',this.email)
-                this.$localStorage.set('password',md5(this.password))        
-                this.$session.set('First name',this.fname)
-                this.$session.set('Last Name',this.lname)
-                this.$router.push("/home")
+             //   this.$localStorage.set('email',this.email)
+              // this.$localStorage.set('password',md5(this.password))        
+                //this.$session.set('First name',this.fname)
+              //  this.$session.set('Last Name',this.lname)
+                this.$router.push("/details")
               }
            }
          }

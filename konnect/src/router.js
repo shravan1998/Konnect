@@ -6,7 +6,8 @@ import Home from './views/Home.vue'
 import Profile from './views/Profile.vue'
 import Notification from './views/Notifications.vue'
 import Messages from './views/Message.vue'
-
+import Details from './views/Details.vue'
+ 
 Vue.use(Router)
 
 const router = new Router(
@@ -49,6 +50,11 @@ const router = new Router(
                 path:"/messages",
                 name:"messages",
                 component:Messages
+            },
+            {
+                path:"/details",
+                name:"details",
+                component:Details
             },
             {path:'*',redirect:'/'}
         ]
