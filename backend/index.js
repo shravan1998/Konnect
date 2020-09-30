@@ -61,6 +61,30 @@ app.post('/login',function(req,res){
         }
     });
 });
+var userData = new Schema({
+    Userid:{type:Object},
+    dob:{type:Date},
+    relation:{type:String},
+    gender:{type:String},
+    education:{type:Array},
+    work:{type:Array},
+    music:{type:String},
+    interest:{type:Array}
+});
+
+var model1 = mongo.model('userData',userData);
+
+app.post('/user',function(req,res){
+    console.log(req.body);
+    model1.save(function(err,data){
+        if(err){
+            console.log(err);
+        }else{
+            console.log(data);
+        }
+    });
+    
+});
 
 app.listen(8000,()=>{
     console.log("Backend running at port 8000");
