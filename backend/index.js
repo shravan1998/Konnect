@@ -66,8 +66,6 @@ var userData = new Schema({
     dob:{type:Date},
     relation:{type:String},
     gender:{type:String},
-    education:{type:Array},
-    work:{type:Array},
     music:{type:String},
     interest:{type:Array}
 });

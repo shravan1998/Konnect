@@ -12,11 +12,11 @@
             <div class="form-row">
                 <div class="col">
                 <label for="dob">Date Of Birth</label>
-                <input type="date" class="form-control" id="dob">
+                <input type="date" class="form-control" id="dob" v-model="dob">
                 </div>
                 <div class="col">
                  <label for="exampleFormControlSelect1">Relationship Status</label>
-                    <select class="form-control" id="exampleFormControlSelect1">
+                    <select class="form-control" id="exampleFormControlSelect1" v-model="relations">
                     <option>Single</option>
                     <option>Married</option>
                     <option>Divorced</option>
@@ -27,19 +27,19 @@
             </div>
             <div class="form-check">
                
-            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1">
+            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="Male" v-model="gender">
             <label class="form-check-label" for="exampleRadios1">
                Male
             </label>
             </div>
             <div class="form-check">
-            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
+            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="Female" v-model="gender">
             <label class="form-check-label" for="exampleRadios2">
                 Female
             </label>
             </div>
             <div class="form-check">
-            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios3" value="option3">
+            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios3" value="Others" v-model="gender">
             <label class="form-check-label" for="exampleRadios3">
                 Others
             </label>
@@ -51,19 +51,19 @@
             <br>
         <div class="form-row" v-for="(ed,index) in Education" :key="index">
             <label for="institute">Institute</label>
-            <input class="form-control" id="institute" type="text" :v-model="ed.institute+index" >
+            <input class="form-control" id="institute" type="text" name="institute" v-model="institute" >
             <br>
             <div class="col">
                 <label for="dob">From</label>
-                <input type="date" class="form-control" id="from">
+                <input type="date" class="form-control" id="from" name="fromEdu" v-model="fromEdu">
             </div>
             <div class="col">
                 <label for="dob">To</label>
-                <input type="date" class="form-control" id="to">
+                <input type="date" class="form-control" name="toEdu" id="to" v-model="toEdu">
             </div>
             <br>
             <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+            <input class="form-check-input" type="checkbox" id="defaultCheck1" value="false" v-model="eduCurrent">
             <label class="form-check-label" for="defaultCheck1">
                 I currently study here
             </label>
@@ -81,19 +81,19 @@
             <br>
             <div class="form-row" v-for="(ed,index) in Work" :key="index">
             <label for="institute">Company</label>
-            <input class="form-control" id="institute" type="text" :v-model="ed.company+index" >
+            <input class="form-control" id="institute" type="text" name="company" v-model="company" >
             <br>
             <div class="col">
                 <label for="dob">From</label>
-                <input type="date" class="form-control" id="from">
+                <input type="date" class="form-control" id="from" name="jobFrom" v-model="jobFrom">
             </div>
             <div class="col">
                 <label for="dob">To</label>
-                <input type="date" class="form-control" id="to">
+                <input type="date" class="form-control" id="to" name="jobTo" v-model="jobTo">
             </div>
             <br>
             <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+            <input class="form-check-input" type="checkbox" value="true" id="defaultCheck1" v-model="jobCurrent">
             <label class="form-check-label" for="defaultCheck1">
                 I currently work here
             </label>
@@ -105,17 +105,17 @@
         </div>
         <div class="form-group">
             <label for="music">Profile Music</label>
-            <input class="form-control" type="text" placeholder="Enter Spotify URL">
+            <input class="form-control" type="text" placeholder="Enter Spotify URL" v-model="music">
         </div>
 
   <v-combobox
-    v-model="chips"
+    v-model="interests"
     :items="items"
     chips
     clearable
     label="Enter interests"
     multiple
-   
+    
     solo
   >
     <template v-slot:selection="{ attrs, item, select, selected }">
@@ -132,7 +132,7 @@
     </template>
   </v-combobox>
 
-    <button type="submit" class="btn btn-primary">
+    <button type="submit" class="btn btn-primary" @click.stop.prevent="submit">
                Submit
             </button>
            
@@ -154,31 +154,67 @@ export default {
     data(){
       return{
        // slackId:this.$localStorage.get('slackId'),
+        dob:null,
+        relations:null,
+        gender:null,
+        music:null,
         Education:[],
+        company:null,
+        jobFrom:null,
+        jobTo:null,
+        jobCurrent:false,
+        institute:null,
+        fromEdu:null,
+        toEdu:null,
+        eduCurrent:false,
         Work:[],
-        chips: ['Programming', 'Playing video games', 'Watching movies', 'Sleeping'],
+        eduData:[],
+        jobData:[],
+        interests: ['Programming', 'Playing video games', 'Watching movies', 'Sleeping'],
         items: ['Streaming', 'Eating'],
       }
     },methods:{
         addEducation(){
             
-            this.Education.push({institute:'institute',to:'to',for:'for',current:'current'});
+            this.Education.push({institute:'institute',to:'to',from:'from',current:'current'});
             //console.log(this.Education);
+            if(this.Education.length>0){
+                this.eduData.push({
+                        institute:this.institute,
+                        eduFrom:this.eduFrom,
+                        eduTo:this.eduTo,
+                        eduCurrent:this.eduCurrent
+                })
+            }
         },
         deleteFind(){
             this.Education.pop();
+            this.eduData.pop();
         },addWork(){
             
-            this.Work.push({company:'company',to:'to',for:'for',current:'current'});
+            this.Work.push({company:'company',to:'to',from:'from',current:'current'});
             console.log(this.Work);
+            if(this.Work.length>0){
+                this.jobData.push({
+                        company:this.company,
+                        jobFrom:this.jobFrom,
+                        jobTo:this.jobTo,
+                        jobCurrent:this.jobCurrent
+                })
+            }
         },
         deleteWork(){
             this.Work.pop();
+            this.jobData.pop();
         },
         remove (item) {
         this.chips.splice(this.chips.indexOf(item), 1)
         this.chips = [...this.chips]
       },
+      submit(){
+          console.log(this.jobData);
+        
+      }
     }
 
     
