@@ -61,23 +61,30 @@ app.post('/login',function(req,res){
         }
     });
 });
-app.get('/id',function(req,res){
-    model.find()
-});
+
 var userData = new Schema({
-    Userid:{type:Object},
+    email:{type:String},
     dob:{type:Date},
     relation:{type:String},
     gender:{type:String},
     music:{type:String},
-    interest:{type:Array}
+    interest:{type:Array},
+    education:{type:Array},
+    job:{type:Array}
 });
 
-var model1 = mongo.model('userData',userData);
+var model1 = mongo.model('user_details',userData);
 
-app.post('/user',function(req,res){
+app.post('/user/:email',function(req,res){
     console.log(req.body);
-    model1.save(function(err,data){
+    var mod = new model1({
+        'email':req.query.email,
+        'dob':req.body.dob,
+        'gender':req.body.lname,
+        'music':req.body.music,
+        'interest':req.body.interest
+    });
+    mod.save(function(err,data){
         if(err){
             console.log(err);
         }else{

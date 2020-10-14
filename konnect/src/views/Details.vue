@@ -145,7 +145,7 @@
 </template>
 <script>
 import Navbar from '../components/Navbar'
-//import axios from 'axios'
+import axios from 'axios'
 export default {
     name:'Details',
     components:{
@@ -212,8 +212,41 @@ export default {
         this.interests = [...this.interests]
       },
       submit(){
-          //console.log(this.jobData);
+          console.log(this.jobData);
+          console.log(this.eduData);
+          console.log(this.$route.query);
           //console.log(this.interests);
+          if(this.institute==null && this.eduFrom==null && this.eduTo==null){
+               this.eduData.push({
+                        institute:this.institute,
+                        eduFrom:this.eduFrom,
+                        eduTo:this.eduTo,
+                        eduCurrent:this.eduCurrent
+                })
+          }
+          if(this.company==null && this.jobFrom==null && this.jobTo==null){
+               this.jobData.push({
+                        institute:this.company,
+                        eduFrom:this.jobFrom,
+                        eduTo:this.jobTo,
+                        eduCurrent:this.eduCurrent
+                })
+          }
+          
+           
+              axios.post("http://localhost:8000/user/email="+this.$route.query.email,{
+                 
+                  dob: this.dob,
+                  relation: this.relations,
+                  gender: this.gender,
+                  music: this.music,
+                  interest: this.interests,
+                  
+
+              }).then(response=>{
+                  console.log(response)
+                });
+
         
       }
     }
