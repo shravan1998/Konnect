@@ -208,11 +208,12 @@ export default {
             this.jobData.pop();
         },
         remove (item) {
-        this.chips.splice(this.chips.indexOf(item), 1)
-        this.chips = [...this.chips]
+        this.interests.splice(this.interests.indexOf(item), 1)
+        this.interests = [...this.interests]
       },
       submit(){
-          console.log(this.jobData);
+          //console.log(this.jobData);
+          //console.log(this.interests);
         
       }
     }

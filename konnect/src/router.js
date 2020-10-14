@@ -52,7 +52,7 @@ const router = new Router(
                 component:Messages
             },
             {
-                path:"/details",
+                path:"/details/:email",
                 name:"details",
                 component:Details
             },

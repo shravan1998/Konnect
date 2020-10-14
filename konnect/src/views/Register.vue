@@ -86,7 +86,7 @@ export default {
               // this.$localStorage.set('password',md5(this.password))        
                 //this.$session.set('First name',this.fname)
               //  this.$session.set('Last Name',this.lname)
-                this.$router.push("/details")
+                this.$router.push("/details/"+this.email)
               }
            }
          }

@@ -61,6 +61,9 @@ app.post('/login',function(req,res){
         }
     });
 });
+app.get('/id',function(req,res){
+    model.find()
+});
 var userData = new Schema({
     Userid:{type:Object},
     dob:{type:Date},
