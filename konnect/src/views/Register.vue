@@ -86,7 +86,10 @@ export default {
               // this.$localStorage.set('password',md5(this.password))        
                 //this.$session.set('First name',this.fname)
               //  this.$session.set('Last Name',this.lname)
-                this.$router.push("/details/email="+this.email)
+              axios.get("http://localhost:8000/login/"+this.email).then(response=>{
+                console.log(response);
+              })
+                this.$router.push('/details')
               }
            }
          }

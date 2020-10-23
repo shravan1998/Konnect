@@ -10,12 +10,12 @@
   <h3>Welcome Back To Konnect!</h3>
   <div class="form-group">
     <label for="exampleInputEmail1">Email address</label>
-    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" >
+    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" v-model="email">
     <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
   </div>
   <div class="form-group">
     <label for="exampleInputPassword1">Password</label>
-    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" v-model="password">
   </div>
 
   <button type="submit" class="btn btn-primary">Submit</button>
@@ -38,12 +38,18 @@ export default {
             backgroundColor:"#ffd11a", 
             padding: "300px",
             
-            }
+            },
+            email:null,
+            password:null,
         
            }
          },
       mounted(){
-        axios.post('/login')
+        axios.post("http://localhost:8000/login/"+this.email).then(response=>{
+          if(this.email==response.email && this.password==response.password){
+              this.router.push()
+          }
+        })
       }
 }
 </script>
@@ -59,3 +65,33 @@ label,small{
     margin-top: -30px;
 }
 </style>
+
+<script>
+import axios from "axios";
+import md5 from 'md5'
+export default {
+  data(){
+    return{
+      myStyle:{
+            backgroundColor:"#ffd11a", 
+            padding: "300px",
+            
+            },
+      fname:null,
+            
+            email:null,
+            password:'',
+            
+    }
+   
+  }, method:{
+      submit(){
+        axios.get("http://localhost:8000/login/"+this.email).then((response)=>{
+          if(response.email == this.email && response.password==md5(this.password)){
+            this.$router.push("/home");
+          }
+        })
+      }
+    }
+}
+</script>

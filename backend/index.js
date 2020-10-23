@@ -62,6 +62,10 @@ app.post('/login',function(req,res){
     });
 });
 
+app.get('/login/:email',function(req,res){
+    console.log(res);
+});
+
 var userData = new Schema({
     email:{type:String},
     dob:{type:Date},

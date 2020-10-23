@@ -91,7 +91,65 @@
     </v-card-actions>
   </v-card>
         </v-container>
-       
+        <v-btn class="mx-2" fab dark color="blue" @click="addEducation()">
+            <v-icon dark>mdi-plus</v-icon>
+            
+            </v-btn>Education Details
+            <br>
+        <div class="form-row" v-for="(ed,index) in Education" :key="index">
+            <label for="institute">Institute</label>
+            <input class="form-control" id="institute" type="text" name="institute" v-model="institute" >
+            <br>
+            <div class="col">
+                <label for="dob">From</label>
+                <input type="date" class="form-control" id="from" name="fromEdu" v-model="fromEdu">
+            </div>
+            <div class="col">
+                <label for="dob">To</label>
+                <input type="date" class="form-control" name="toEdu" id="to" v-model="toEdu">
+            </div>
+            <br>
+            <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="defaultCheck1" value="false" v-model="eduCurrent">
+            <label class="form-check-label" for="defaultCheck1">
+                I currently study here
+            </label>
+            </div>
+            <br>
+             <button @click="deleteFind()" class="btn btn-primary">
+                 -
+            </button>
+        </div>
+        <br>
+         <v-btn class="mx-2" fab dark color="blue" @click="addWork()">
+            <v-icon dark>mdi-plus</v-icon>
+            
+            </v-btn>Work Details
+            <br>
+            <div class="form-row" v-for="(ed,index) in Work" :key="index">
+            <label for="institute">Company</label>
+            <input class="form-control" id="institute" type="text" name="company" v-model="company" >
+            <br>
+            <div class="col">
+                <label for="dob">From</label>
+                <input type="date" class="form-control" id="from" name="jobFrom" v-model="jobFrom">
+            </div>
+            <div class="col">
+                <label for="dob">To</label>
+                <input type="date" class="form-control" id="to" name="jobTo" v-model="jobTo">
+            </div>
+            <br>
+            <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="true" id="defaultCheck1" v-model="jobCurrent">
+            <label class="form-check-label" for="defaultCheck1">
+                I currently work here
+            </label>
+            </div>
+            <br>
+             <button @click="deleteWork()" class="btn btn-primary">
+                 -
+            </button>
+        </div>
   </v-app>
  
     </div>
