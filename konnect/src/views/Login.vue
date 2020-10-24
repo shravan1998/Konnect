@@ -54,7 +54,8 @@ export default {
           this.id=response.data[0]._id;
           console.log(response.data[0]._id);
           if(response.data[0].email == this.email && response.data[0].password==md5(this.password)){
-            console.log(1);
+           // console.log(1);
+           this.$localStorage.set('id',this.id)
             this.$router.push("/home");
           }
         })

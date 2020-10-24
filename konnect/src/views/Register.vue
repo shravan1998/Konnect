@@ -54,7 +54,8 @@ export default {
             lname:null,
             email:null,
             password:'',
-            cpassword:''
+            cpassword:'',
+            id:null
            }
          },
          methods:{
@@ -87,9 +88,11 @@ export default {
                 //this.$session.set('First name',this.fname)
               //  this.$session.set('Last Name',this.lname)
               axios.get("http://localhost:8000/login/"+this.email).then(response=>{
-                console.log(response);
+                this.$localStorage.set('id',response.data[0]._id)
+                this.id=response.data[0]._id;
+                //console.log(response);
               })
-                this.$router.push('/details')
+              this.$router.push('/details/'+this.id)
               }
            }
          }

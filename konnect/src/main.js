@@ -3,15 +3,18 @@ import App from './App.vue'
 import vuetify from './plugins/vuetify'
 import router from "./router"
 import alertify from 'alertifyjs'
-//import localStorage from 'vue-localstorage'
+import VueLocalStorage from 'vue-localstorage'
 import 'bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
 
 Vue.config.productionTip = false
+Vue.use(VueLocalStorage)
+Vue.use(alertify)
 
 new Vue({
   vuetify,
   router,
-  alertify,
+  //alertify,
+  //localStorage,
   render: h => h(App)
 }).$mount('#app')
