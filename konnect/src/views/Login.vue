@@ -43,13 +43,17 @@ export default {
             
             email:null,
             password:'',
+            id:null
             
     }
    
   }, methods:{
       submit(){
-        axios.get("http://localhost:8000/login").then((response)=>{
-          if(response.email == this.email && response.password==md5(this.password)){
+        console.log(this.email);
+        axios.get("http://localhost:8000/login/"+this.email).then((response)=>{
+          this.id=response.data[0]._id;
+          console.log(response.data[0]._id);
+          if(response.data[0].email == this.email && response.data[0].password==md5(this.password)){
             console.log(1);
             this.$router.push("/home");
           }
