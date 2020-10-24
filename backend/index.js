@@ -62,8 +62,20 @@ app.post('/login',function(req,res){
     });
 });
 
-app.get('/login/:email',function(req,res){
-    console.log(res);
+app.get('/login',function(req,res){
+    let password = md5(req.body.password)
+    //console.log(res);
+    model.find({
+        'email':req.body.email,
+        'password':password
+    },function(err,data){
+        if(err){
+            res.send(err);
+        }else{
+            res.send({data:"Record inserted"});
+            console.log(data);
+        }
+    });
 });
 
 var userData = new Schema({

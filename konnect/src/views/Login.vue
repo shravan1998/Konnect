@@ -18,7 +18,7 @@
     <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" v-model="password">
   </div>
 
-  <button type="submit" class="btn btn-primary">Submit</button>
+  <button type="submit" class="btn btn-primary" @click.stop.prevent="submit">Submit</button>
   &nbsp;
   <router-link class="btn btn-success" tag="button" to="/register">Register If You Don't Have The Account Yet</router-link>
    
@@ -28,45 +28,7 @@
 </v-container>
 </div>
 </template>
-
 <script scoped>
-import axios from 'axios';
-export default {
-     data(){
-       return{
-         myStyle:{
-            backgroundColor:"#ffd11a", 
-            padding: "300px",
-            
-            },
-            email:null,
-            password:null,
-        
-           }
-         },
-      mounted(){
-        axios.post("http://localhost:8000/login/"+this.email).then(response=>{
-          if(this.email==response.email && this.password==response.password){
-              this.router.push()
-          }
-        })
-      }
-}
-</script>
-<style scoped>
-.card-body{
-    background-color: #000033;
-    color: white;
-}
-label,small{
-    color: white;
-}
-#wrapper{
-    margin-top: -30px;
-}
-</style>
-
-<script>
 import axios from "axios";
 import md5 from 'md5'
 export default {
@@ -84,10 +46,11 @@ export default {
             
     }
    
-  }, method:{
+  }, methods:{
       submit(){
-        axios.get("http://localhost:8000/login/"+this.email).then((response)=>{
+        axios.get("http://localhost:8000/login").then((response)=>{
           if(response.email == this.email && response.password==md5(this.password)){
+            console.log(1);
             this.$router.push("/home");
           }
         })
@@ -95,3 +58,18 @@ export default {
     }
 }
 </script>
+
+
+<style scoped>
+.card-body{
+    background-color: #000033;
+    color: white;
+}
+label,small{
+    color: white;
+}
+#wrapper{
+    margin-top: -30px;
+}
+</style>
+
