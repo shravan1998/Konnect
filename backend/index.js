@@ -110,11 +110,30 @@ app.post('/user/:email',function(req,res){
 });
 
 var post = new Schema({
-    id:String,
-    firstName:String,
-    lastName:String,
-    
+    id:{type:String},
+    firstName:{type:String},
+    lastName:{type:String},
+    email:{type:String}
 })
+
+var model2 = mongo.model('post',post);
+
+app.post('/post',function(req,res){
+    var mod = new model2({
+        'id':req.body.id,
+        'firstName':req.body.firstName,
+        'lastName':req.body.lastName,
+        'email':req.body.email,
+        'likes':req.body.likes
+    })
+    mod.save(function(err,data){
+        if(err){
+            console.log(err);
+        }else{
+            console.log(data);
+        }
+    });
+});
 
 app.listen(8000,()=>{
     console.log("Backend running at port 8000");
