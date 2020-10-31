@@ -6,6 +6,8 @@ import alertify from 'alertifyjs'
 import VueLocalStorage from 'vue-localstorage'
 import 'bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
+import './quasar'
+
 
 Vue.config.productionTip = false
 Vue.use(VueLocalStorage)

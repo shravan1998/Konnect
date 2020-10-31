@@ -89,10 +89,11 @@ export default {
               //  this.$session.set('Last Name',this.lname)
               axios.get("http://localhost:8000/login/"+this.email).then(response=>{
                 this.$localStorage.set('id',response.data[0]._id)
+                this.$localStorage.set('email',this.email)
                 this.id=response.data[0]._id;
                 //console.log(response);
               })
-              this.$router.push('/details/'+this.id)
+              this.$router.push('/details');
               }
            }
          }

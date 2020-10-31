@@ -15,9 +15,9 @@
           <div class="form-group">
              <label for="exampleFormControlTextarea1">Anything you wanna share?
              </label>
-    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+          <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" v-model="post"></textarea>
           </div>
-          <button type="submit" class="btn btn-primary">Submit</button>
+          <button type="submit" class="btn btn-primary" @click.stop.prevent="submit">Submit</button>
         </form>
       <v-card
     class="mx-auto"
@@ -52,19 +52,32 @@
 </template>
 <script>
 import Navbar from '../components/Navbar'
-//import axios from 'axios'
+import axios from 'axios'
 export default {
     name:'Home',
     components:{
         Navbar
     },
     data(){
+      let email = this.$localStorage.get('email')
+      let firstName;
+      let lastName;
+      axios.get("http://localhost:8000/login/"+email).then(response=>{
+        firstName = response.data[0].firstName;
+        lastName = response.data[0].lastName;
+      })    
       return{
-       // slackId:this.$localStorage.get('slackId'),
-        tasks:null
+        id:this.$localStorage.get('id'),
+        post:null,
+        firstName:firstName,
+        lastName:lastName
       }
     },
+    methods:{
+      submit(){
 
+      }
+    }
     
 }
 </script>

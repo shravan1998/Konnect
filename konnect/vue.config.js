@@ -1,5 +1,16 @@
 module.exports = {
-  "transpileDependencies": [
-    "vuetify"
-  ]
+ 
+
+  pluginOptions: {
+    "transpileDependencies": [
+      'vuetify',
+      'quasar'
+    ],
+    quasar: {
+      importStrategy: 'kebab',
+      rtlSupport: true
+    }
+  },
+
+ 
 }

@@ -33,7 +33,10 @@ import axios from "axios";
 import md5 from 'md5'
 export default {
   data(){
+    this.$localStorage.remove('id')
+    this.$localStorage.remove('email')
     return{
+       
       myStyle:{
             backgroundColor:"#ffd11a", 
             padding: "300px",
@@ -43,7 +46,8 @@ export default {
             
             email:null,
             password:'',
-            id:null
+            id:null,
+           
             
     }
    
@@ -56,6 +60,7 @@ export default {
           if(response.data[0].email == this.email && response.data[0].password==md5(this.password)){
            // console.log(1);
            this.$localStorage.set('id',this.id)
+           this.$localStorage.set('email',this.email)
             this.$router.push("/home");
           }
         })

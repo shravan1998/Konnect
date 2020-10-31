@@ -109,6 +109,13 @@ app.post('/user/:email',function(req,res){
     
 });
 
+var post = new Schema({
+    id:String,
+    firstName:String,
+    lastName:String,
+    
+})
+
 app.listen(8000,()=>{
     console.log("Backend running at port 8000");
 });

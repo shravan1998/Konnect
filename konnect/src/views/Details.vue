@@ -116,39 +116,7 @@ export default {
         items: ['Streaming', 'Eating'],
       }
     },methods:{
-        addEducation(){
-            
-            this.Education.push({institute:'institute',to:'to',from:'from',current:'current'});
-            //console.log(this.Education);
-            if(this.Education.length>0){
-                this.eduData.push({
-                        institute:this.institute,
-                        eduFrom:this.eduFrom,
-                        eduTo:this.eduTo,
-                        eduCurrent:this.eduCurrent
-                })
-            }
-        },
-        deleteFind(){
-            this.Education.pop();
-            this.eduData.pop();
-        },addWork(){
-            
-            this.Work.push({company:'company',to:'to',from:'from',current:'current'});
-            console.log(this.Work);
-            if(this.Work.length>0){
-                this.jobData.push({
-                        company:this.company,
-                        jobFrom:this.jobFrom,
-                        jobTo:this.jobTo,
-                        jobCurrent:this.jobCurrent
-                })
-            }
-        },
-        deleteWork(){
-            this.Work.pop();
-            this.jobData.pop();
-        },
+        
         remove (item) {
         this.interests.splice(this.interests.indexOf(item), 1)
         this.interests = [...this.interests]
