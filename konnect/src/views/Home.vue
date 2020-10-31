@@ -19,30 +19,30 @@
           </div>
           <button type="submit" class="btn btn-primary" @click.stop.prevent="submit">Submit</button>
         </form>
-      <v-card
+        <v-row
+         v-for="post in posts"
+          :key="post._id"
+        >
+           <v-card
     class="mx-auto"
     max-width="344"
   >
     <v-card-text>
-      <div>Word of the Day</div>
-      <p class="display-1 text--primary">
-        be•nev•o•lent
-      </p>
-      <p>adjective</p>
+      
       <div class="text--primary">
-        well meaning and kindly.<br>
-        "a benevolent smile"
+       
       </div>
     </v-card-text>
     <v-card-actions>
-      <v-btn
-        text
-        color="deep-purple accent-4"
-      >
-        Learn More
-      </v-btn>
-    </v-card-actions>
-  </v-card>
+     <q-toggle
+        v-model="like"
+        color="red"
+        label="Like"
+        left-label
+      />
+        </v-card-actions>
+         </v-card>
+        </v-row>
         </v-container>
        
   </v-app>
@@ -70,12 +70,24 @@ export default {
         id:this.$localStorage.get('id'),
         post:null,
         firstName:firstName,
-        lastName:lastName
+        lastName:lastName,
+        email:this.$localStorage.get('email'),
+        likes:0,
+        posts:null
       }
     },
     methods:{
       submit(){
-
+        axios.post('http://localhost:8000/post',{
+          id:this.id,
+          post:this.post,
+          firstName:this.firstName,
+          lastName:this.lastName,
+          email:this.email,
+          likes:this.likes
+        }).then(response=>{
+          console.log(response);
+        })
       }
     }
     
