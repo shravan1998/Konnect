@@ -21,14 +21,14 @@
         </form>
         <v-row
          v-for="post in posts"
-          :key="post._id"
+        :key="post._id"
         >
            <v-card
     class="mx-auto"
     max-width="344"
   >
     <v-card-text>
-      
+      <h1>{{post.firstName}}</h1> <h1>{{post.lastName}}</h1>
       <div class="text--primary">
        
       </div>
@@ -76,13 +76,21 @@ export default {
         posts:null
       }
     },
+    mounted(){
+      axios.get('http://localhost:8000/posts').then(response=>{
+        this.posts=response.data;
+        console.log(this.posts);
+      });
+    },
     methods:{
       submit(){
+        console.log(this.post);
+        //this.$localStorage.set('post',this.post)
         axios.post('http://localhost:8000/post',{
           id:this.id,
           post:this.post,
-          firstName:this.firstName,
-          lastName:this.lastName,
+          firstName:this.$localStorage.get('firstName'),
+          lastName:this.$localStorage.get('lastName'),
           email:this.email,
           likes:this.likes
         }).then(response=>{

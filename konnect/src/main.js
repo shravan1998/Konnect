@@ -7,15 +7,18 @@ import VueLocalStorage from 'vue-localstorage'
 import 'bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './quasar'
+import './registerServiceWorker'
 
 
 Vue.config.productionTip = false
 Vue.use(VueLocalStorage)
 Vue.use(alertify)
+//Vue.use(pwa)
 
 new Vue({
   vuetify,
   router,
+ 
   //alertify,
   //localStorage,
   render: h => h(App)

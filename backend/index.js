@@ -111,9 +111,11 @@ app.post('/user/:email',function(req,res){
 
 var post = new Schema({
     id:{type:String},
+    post:{type:String},
     firstName:{type:String},
     lastName:{type:String},
-    email:{type:String}
+    email:{type:String},
+    likes:{type:Number}
 })
 
 var model2 = mongo.model('post',post);
@@ -121,6 +123,7 @@ var model2 = mongo.model('post',post);
 app.post('/post',function(req,res){
     var mod = new model2({
         'id':req.body.id,
+        'post':req.body.post,
         'firstName':req.body.firstName,
         'lastName':req.body.lastName,
         'email':req.body.email,
@@ -133,6 +136,16 @@ app.post('/post',function(req,res){
             console.log(data);
         }
     });
+});
+
+app.get('/posts',function(req,res){
+    model2.find({},function(err,data){
+        if(err){
+            console.log(err);
+        }else{
+            console.log(data);
+        }
+    })
 });
 
 app.listen(8000,()=>{

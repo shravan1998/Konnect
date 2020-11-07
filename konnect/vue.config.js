@@ -4,7 +4,8 @@ module.exports = {
   pluginOptions: {
     "transpileDependencies": [
       'vuetify',
-      'quasar'
+      'quasar',
+     // 'pwa'
     ],
     quasar: {
       importStrategy: 'kebab',
