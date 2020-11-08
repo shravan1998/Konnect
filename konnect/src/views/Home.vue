@@ -19,18 +19,19 @@
           </div>
           <button type="submit" class="btn btn-primary" @click.stop.prevent="submit">Submit</button>
         </form>
+      
         <v-row
          v-for="post in posts"
         :key="post._id"
         >
            <v-card
     class="mx-auto"
-    max-width="344"
+    max-width="500"
   >
     <v-card-text>
-      <h1>{{post.firstName}}</h1> <h1>{{post.lastName}}</h1>
+      <h4>{{post.firstName}} {{post.lastName}}</h4>
       <div class="text--primary">
-       
+       {{post.post}}
       </div>
     </v-card-text>
     <v-card-actions>
@@ -42,7 +43,9 @@
       />
         </v-card-actions>
          </v-card>
+        <br>
         </v-row>
+         
         </v-container>
        
   </v-app>
@@ -77,9 +80,10 @@ export default {
       }
     },
     mounted(){
+      //console.log(this.posts);
       axios.get('http://localhost:8000/posts').then(response=>{
         this.posts=response.data;
-        console.log(this.posts);
+        console.log(response);
       });
     },
     methods:{
@@ -96,6 +100,11 @@ export default {
         }).then(response=>{
           console.log(response);
         })
+       axios.get('http://localhost:8000/posts').then(response=>{
+        this.posts=response.data;
+        console.log(response);
+      });
+     // console.log(this.posts)
       }
     }
     
