@@ -33,14 +33,40 @@
       <div class="text--primary">
        {{post.post}}
       </div>
+      
     </v-card-text>
     <v-card-actions>
-     <q-toggle
-        v-model="like"
-        color="red"
-        label="Like"
-        left-label
-      />
+    
+    <v-btn
+              icon
+              class="icon"
+              @click="likePost"
+              
+              
+            >
+              <v-icon>mdi-thumb-up</v-icon>
+            </v-btn>
+            <v-btn
+      depressed
+      color="primary"
+    >
+      Comment
+    </v-btn>
+   <v-btn
+      depressed
+      color="error"
+    >
+      Delete Post
+    </v-btn>
+    <v-btn
+      tile
+      color="success"
+    >
+      <v-icon left>
+        mdi-pencil
+      </v-icon>
+      Edit
+    </v-btn>
         </v-card-actions>
          </v-card>
         <br>
@@ -65,6 +91,7 @@ export default {
       let email = this.$localStorage.get('email')
       let firstName;
       let lastName;
+    //  let like_button;
       axios.get("http://localhost:8000/login/"+email).then(response=>{
         firstName = response.data[0].firstName;
         lastName = response.data[0].lastName;
@@ -76,6 +103,7 @@ export default {
         lastName:lastName,
         email:this.$localStorage.get('email'),
         likes:0,
+        like:false,
         posts:null
       }
     },
@@ -105,6 +133,9 @@ export default {
         console.log(response);
       });
      // console.log(this.posts)
+      },
+      likePost(){
+       
       }
     }
     
@@ -112,5 +143,12 @@ export default {
 </script>
 
 <style scoped>
+v-btn{
+  color: white;
+}
+
+.icon:after{
+  color: orangered;
+}
 
 </style>

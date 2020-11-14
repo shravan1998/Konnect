@@ -4,8 +4,8 @@
        
     
         
-  <v-app id="inspire"
-  style="margin-top:-25px;"
+  <v-app id="inspire" 
+ style="margin-top:-25px;"
   >
         <Navbar />
         <v-container
