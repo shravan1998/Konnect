@@ -40,8 +40,9 @@
     <v-btn
               icon
               class="icon"
-              @click="likePost"
-              
+              color="grey"
+              v-on:click="likePost"
+              id="like"
               
             >
               <v-icon>mdi-thumb-up</v-icon>
@@ -134,8 +135,8 @@ export default {
       });
      // console.log(this.posts)
       },
-      likePost(){
-       
+      likePost(event){
+       this.color = event.target.style.color = this.color==="grey" ? "orangered" : "grey";
       }
     }
     
