@@ -56,6 +56,7 @@
    <v-btn
       depressed
       color="error"
+      @click="deletePost(post._id)"
     >
       Delete Post
     </v-btn>
@@ -137,6 +138,17 @@ export default {
       },
       likePost(event){
        this.color = event.target.style.color = this.color==="grey" ? "orangered" : "grey";
+      },
+      deletePost(id){
+        console.log(id);
+        axios.delete('http://localhost:8000/delete-post/'+id).then(response=>{
+          console.log(response);
+          //this.data();
+        });
+        axios.get('http://localhost:8000/posts').then(response=>{
+          this.posts=response.data;
+          console.log(response);
+      });
       }
     }
     

@@ -4,6 +4,7 @@ const path = require("path");
 const mongo = require("mongoose");
 var cors = require("cors");
 const md5 = require("md5");
+const e = require("express");
 
 var app = express();
 app.use(cors());
@@ -134,6 +135,20 @@ app.post('/post',function(req,res){
             console.log(err);
         }else{
             console.log(data);
+        }
+    });
+});
+
+app.delete('/delete-post/:id',function(req,res){
+    let id = req.params.id;
+    model2.deleteOne({
+        '_id':id
+    },function(err,data){
+        if(err){
+            console.log(err)
+        }else{
+            console.log(data);
+            res.send(data);
         }
     });
 });
