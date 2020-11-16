@@ -41,12 +41,13 @@
               icon
               class="icon"
               color="grey"
-              v-on:click="likePost"
+              v-on:click="likePost($event,post._id,post.id)"
               id="like"
               
             >
               <v-icon>mdi-thumb-up</v-icon>
             </v-btn>
+            {{post.likes}}
             <v-btn
       depressed
       color="primary"
@@ -136,8 +137,31 @@ export default {
       });
      // console.log(this.posts)
       },
-      likePost(event){
-       this.color = event.target.style.color = this.color==="grey" ? "orangered" : "grey";
+      likePost(event,id,user_id){
+       this.color = event.target.style.color = this.color!=="orangered" ? "orangered" : "grey";
+       if(user_id!==id){
+         axios.get('http://localhost:8000/post/'+id).then(response=>{
+          this.likes=response.data.likes;
+          console.log(response.data.likes);
+      });
+       }
+       if(this.color==="orangered"){
+         this.like = true;
+         this.likes++;
+       }else{
+         this.like=false;
+         this.likes--;
+       }
+       console.log(id);
+      axios.patch('http://localhost:8000/like-post/'+id,{
+         likes:this.likes
+       }).then(response=>{
+         console.log(response);
+       });
+        axios.get('http://localhost:8000/posts').then(response=>{
+          this.posts=response.data;
+          console.log(response);
+      });
       },
       deletePost(id){
         console.log(id);

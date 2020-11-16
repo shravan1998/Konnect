@@ -162,6 +162,31 @@ app.get('/posts',function(req,res){
         }
     })
 });
+app.get('/post/:id',function(req,res){
+    model2.find({
+        '_id':req.params.id
+    },function(err,data){
+        if(err){
+            console.log(err);
+        }else{
+            res.send(data);
+        }
+    })
+});
+
+app.patch('/like-post/:id',function(req,res){
+    model2.update({
+        '_id':req.params.id
+    },{
+        'likes':req.body.likes
+    },function(err,data){
+        if(err){
+            console.log(err);
+        }else{
+            res.send(data);
+        }
+    })
+})
 
 app.listen(8000,()=>{
     console.log("Backend running at port 8000");
