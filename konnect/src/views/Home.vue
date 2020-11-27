@@ -51,6 +51,7 @@
             <v-btn
       depressed
       color="primary"
+      @click="comment(post._id)"
     >
       Comment
     </v-btn>
@@ -173,6 +174,10 @@ export default {
           this.posts=response.data;
           console.log(response);
       });
+      },
+      comment(id){
+        this.$router.push("/comment");
+        this.$localStorage.set('post_id',id)
       }
     }
     

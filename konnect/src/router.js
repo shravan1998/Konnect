@@ -7,6 +7,7 @@ import Profile from './views/Profile.vue'
 import Notification from './views/Notifications.vue'
 import Messages from './views/Message.vue'
 import Details from './views/Details.vue'
+import Comment from './views/Comments.vue'
  
 Vue.use(Router)
 
@@ -55,6 +56,11 @@ const router = new Router(
                 path:"/details",
                 name:"details",
                 component:Details
+            },
+            {
+                path:"/comment",
+                name:"comment",
+                component:Comment
             },
             {path:'*',redirect:'/'}
         ]

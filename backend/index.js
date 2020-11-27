@@ -188,6 +188,49 @@ app.patch('/like-post/:id',function(req,res){
     })
 })
 
+var comment =new Schema({
+    user_id:{type:String},
+    post_id:{type:String},
+    comment:{type:String}
+});
+
+var model3 = mongo.model('comments',comment);
+
+app.post('/comment',function(req,res){
+    let mod = new model3({
+        'user_id':req.body.id,
+        'post_id':req.body.post_id,
+        'comment':req.body.comment
+    });
+   /* mod.save(function(err,data){
+        if(err){
+            console.log(err);
+        }else{
+            console.log(data);
+            res.send(data);
+        }
+    })*/
+    model2.aggregate([
+        {
+            $lookup:
+            {
+                from:'posts',
+                localField:'user_id',
+                foreignField:'_id',
+                as:'comments'
+            }
+        }
+    ],function(err,data){
+        if(err){
+            console.log(err);
+        }else{
+            res.send(data);
+            console.log(data);
+        }
+    })
+
+})
+
 app.listen(8000,()=>{
     console.log("Backend running at port 8000");
 });
