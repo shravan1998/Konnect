@@ -14,9 +14,9 @@
            <form>
           <div class="form-group">
             
-    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" v-model="message"></textarea>
           </div>
-          <button type="submit" class="btn btn-primary">Submit</button>
+          <button type="submit" class="btn btn-primary" @click.stop.prevent="submit">Submit</button>
         </form>
 
         </v-container>
@@ -37,10 +37,29 @@ export default {
     data(){
       return{
        // slackId:this.$localStorage.get('slackId'),
-        tasks:null
+        isConnected: false,
+        message:null,
+        socketMessage: ''
       }
     },
+    sockets:{
+      connect() {
+      // Fired when the socket connects.
+      this.isConnected = true;
+    },
 
-    
+    disconnect() {
+      this.isConnected = false;
+      },
+      messageChannel(data) {
+      this.socketMessage = data
+    }
+    },
+    methods: {
+    submit() {
+      // Send the "pingServer" event to the server.
+      this.$socket.emit('pingServer', this.message)
+    }
+  }
 }
 </script>

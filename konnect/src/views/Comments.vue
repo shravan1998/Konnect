@@ -44,6 +44,8 @@ export default {
         userid:this.$localStorage.get('id'),
         comment:null,
         post_id:this.$localStorage.get('post_id'),
+        fname:this.$localStorage.get('first_name'),
+        lname:this.$localStorage.get('last_name'),
         comments:null
       }
     },
