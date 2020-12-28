@@ -4,8 +4,8 @@ import vuetify from './plugins/vuetify'
 import router from "./router"
 import alertify from 'alertifyjs'
 import VueLocalStorage from 'vue-localstorage'
-import socketio from 'socket.io';
-import VueSocketIO from 'vue-socket.io';
+//import socketio from 'socket.io';
+//import VueSocketIO from 'vue-socket.io';
 import 'bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './quasar'
@@ -16,9 +16,9 @@ Vue.config.productionTip = false
 Vue.use(VueLocalStorage)
 Vue.use(alertify)
 //Vue.use(pwa)
-export const SocketInstance = socketio('http://localhost:8080');
+//export const SocketInstance = socketio('http://localhost:8000');
 
-Vue.use(VueSocketIO, SocketInstance)
+//Vue.use(VueSocketIO, SocketInstance)
 
 new Vue({
   vuetify,

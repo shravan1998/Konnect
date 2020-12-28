@@ -16,8 +16,21 @@
             
     <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" v-model="message"></textarea>
           </div>
-          <button type="submit" class="btn btn-primary" @click.stop.prevent="submit">Submit</button>
+          <button type="submit" class="btn btn-primary" @click.stop.prevent="sendMessage">Submit</button>
         </form>
+        <div class="card mt-3">
+      <div class="card-body">
+          <div class="card-title">
+              <h3>Messenger</h3>
+              <hr>
+          </div>
+          <div class="card-body">
+              <div class="messages" v-for="(msg, index) in messages" :key="index">
+                  <p><span class="font-weight-bold">{{ msg.user }}: </span>{{ msg.message }}</p>
+              </div>
+          </div>
+      </div>
+        </div>
 
         </v-container>
        
@@ -29,6 +42,7 @@
 <script>
 import Navbar from '../components/Navbar'
 //import axios from 'axios'
+import io from 'socket.io-client';
 export default {
     name:'Messages',
     components:{
@@ -36,30 +50,29 @@ export default {
     },
     data(){
       return{
-       // slackId:this.$localStorage.get('slackId'),
-        isConnected: false,
-        message:null,
-        socketMessage: ''
+        user: this.$localStorage.get('firstName')+" "+this.$localStorage.get('lastName'),
+        message: '',
+        messages: [],
+        socket : io('localhost:8000', { transport : ['websocket'] })
       }
     },
-    sockets:{
-      connect() {
-      // Fired when the socket connects.
-      this.isConnected = true;
-    },
-
-    disconnect() {
-      this.isConnected = false;
-      },
-      messageChannel(data) {
-      this.socketMessage = data
-    }
-    },
+  
     methods: {
-    submit() {
-      // Send the "pingServer" event to the server.
-      this.$socket.emit('pingServer', this.message)
+    sendMessage(e) {
+            e.preventDefault();
+            
+            this.socket.emit('SEND_MESSAGE', {
+                user: this.user,
+                message: this.message
+            });
+            this.message = ''
+        }
+  },
+    mounted() {
+        this.socket.on('MESSAGE', (data) => {
+            this.messages = [...this.messages, data];
+            // you can also do this.messages.push(data)
+        });
     }
-  }
 }
 </script>
